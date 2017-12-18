@@ -23,7 +23,7 @@ public class Classifier
     [DllImport("Badminton_IMU")]
     public static extern int DllPredict(IntPtr obj);
 
-    public static IntPtr m_predict;
+    //public static IntPtr m_predict;
 
 	//void Start ()
  //   {

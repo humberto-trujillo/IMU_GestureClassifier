@@ -46,6 +46,12 @@ public abstract class IMU_Communication : Singleton<IMU_Communication>
         m_receiveDataThread.Start();
     }
 
+    public string[] SplittedData()
+    {
+        string[] tokens = m_returnData.Split(',');
+        return tokens;
+    }
+
     /// <summary>
     /// Overwritten by sub COMM class to close any open ports when terminating communication
     /// </summary>
