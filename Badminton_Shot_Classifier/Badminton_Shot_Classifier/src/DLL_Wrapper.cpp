@@ -1,41 +1,42 @@
 #include "ShotClassifier.h"
+#define ShotClassifierAPI _declspec(dllexport)
 
-extern "C" _declspec(dllexport) void* DllNewShotPredict()
+extern "C" ShotClassifierAPI void* NewShotClassifier()
 {
 	return new ShotClassifier;
 }
 
-extern "C" _declspec(dllexport) double DllGrtVersion(void* obj)
+extern "C" ShotClassifierAPI double GrtVersion(void* obj)
 {
 	ShotClassifier *classifier = (ShotClassifier*)obj;
 	return classifier->GrtVersion();
 }
 
-extern "C" _declspec(dllexport) int DllLoadTrainingData(void* obj, char* filePath)
+extern "C" ShotClassifierAPI int LoadTrainingData(void* obj, char* filePath)
 {
 	ShotClassifier *classifier = (ShotClassifier*)obj;
 	return classifier->LoadTrainingData(filePath);
 }
 
-extern "C" _declspec(dllexport) int DllLoadModelFromFile(void* obj, const char* filePath)
+extern "C" ShotClassifierAPI int LoadModelFromFile(void* obj, const char* filePath)
 {
 	ShotClassifier *classifier = (ShotClassifier*)obj;
 	return classifier->LoadModelFromFile(filePath);
 }
 
-extern "C" _declspec(dllexport) void DllAddToTimeSeriesBuffer(void* obj, double x, double y, double z)
+extern "C" ShotClassifierAPI void AddToTimeSeriesBuffer(void* obj, double x, double y, double z)
 {
 	ShotClassifier *classifier = (ShotClassifier*)obj;
 	classifier->AddToTimeSeriesBuffer(x,y,z);
 }
 
-extern "C" _declspec(dllexport) void DllGetBufferAsString(void* obj, char* str, int len)
+extern "C" ShotClassifierAPI void GetBufferAsString(void* obj, char* str, int len)
 {
 	ShotClassifier *classifier = (ShotClassifier*)obj;
 	classifier->GetBufferAsString(str, len);
 }
 
-extern "C" _declspec(dllexport) int DllPredict(void* obj)
+extern "C" ShotClassifierAPI int Predict(void* obj)
 {
 	ShotClassifier *classifier = (ShotClassifier*)obj;
 	return (int)classifier->Predict();

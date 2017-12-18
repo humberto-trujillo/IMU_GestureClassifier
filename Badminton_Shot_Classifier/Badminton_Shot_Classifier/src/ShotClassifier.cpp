@@ -9,7 +9,7 @@ ShotClassifier::ShotClassifier()
 
 ShotClassifier::~ShotClassifier()
 {
-	
+
 }
 
 double ShotClassifier::GrtVersion()

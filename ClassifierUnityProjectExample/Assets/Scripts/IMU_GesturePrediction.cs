@@ -1,39 +1,36 @@
 using System;
-using System.Text;
 using UnityEngine;
 
 public class IMU_GesturePrediction : MonoBehaviour
 {
     SerialComm m_serialManager;
-    IntPtr m_predict;
+    IntPtr m_classifier;
 
     void Awake()
     {
-        m_predict = Classifier.DllNewShotPredict();
-        //if(m_predict == null)
-        //{
-        //    Destroy(this);
-        //}
+        m_classifier = Classifier.NewShotClassifier();
     }
+
     void Start ()
     {
         m_serialManager = SerialComm.Instance as SerialComm;
-        Debug.Log("Version: " + Classifier.DllGrtVersion(m_predict));
+        Debug.Log("GRT Version: " + Classifier.GrtVersion(m_classifier));
+        Debug.Log("Loading classification model...");
+        string filePath = "c:\\Users\\Humberto\\Documents\\Badminton_IMU\\Badminton_IMU\\DTWModel.txt";
+        Debug.Log(Classifier.LoadModelFromFile(m_classifier,filePath) == 1? "Success" : "Failed!");
     }
-	
-	void Update ()
-    {
-        string[] tokens = m_serialManager.SplittedData();
-        float x = float.Parse(tokens[1]);
-        float y = float.Parse(tokens[2]);
-        float z = float.Parse(tokens[3]);
 
-        Classifier.DllAddToTimeSeriesBuffer(m_predict, x,y,z);
-        if (Input.GetKeyDown(KeyCode.D))
+    void Update()
+    {
+        string latestFrame = m_serialManager.ReturnData;
+        if (latestFrame != null)
         {
-            StringBuilder sb = new StringBuilder(200);
-            Classifier.DllGetBufferAsString(m_predict, sb, sb.Capacity);
-            Debug.Log("Desde dll: \n"+sb.ToString());
+            string[] tokens = m_serialManager.SplittedData();
+            float x = float.Parse(tokens[1]);
+            float y = float.Parse(tokens[2]);
+            float z = float.Parse(tokens[3]);
+
+            Classifier.AddToTimeSeriesBuffer(m_classifier, x, y, z);
         }
     }
 }
