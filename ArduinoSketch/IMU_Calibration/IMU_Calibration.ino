@@ -150,7 +150,7 @@ void setup(void)
     *  This isn't foolproof, but it's better than nothing.
     */
     bno.getSensor(&sensor);
-    if (bnoID != sensor.sensor_id)
+    if (bnoID != 1)
     {
         Serial.println("\nNo Calibration Data for this sensor exists in EEPROM");
         delay(500);
@@ -226,7 +226,7 @@ void setup(void)
 
     eeAddress = 0;
     bno.getSensor(&sensor);
-    bnoID = sensor.sensor_id;
+    bnoID = 1;
 
     EEPROM.put(eeAddress, bnoID);
 
@@ -239,27 +239,27 @@ void setup(void)
 }
 
 void loop() {
-    /* Get a new sensor event */
-    sensors_event_t event;
-    bno.getEvent(&event);
-
-    /* Display the floating point data */
-    Serial.print("X: ");
-    Serial.print(event.orientation.x, 4);
-    Serial.print("\tY: ");
-    Serial.print(event.orientation.y, 4);
-    Serial.print("\tZ: ");
-    Serial.print(event.orientation.z, 4);
-
-    /* Optional: Display calibration status */
-    displayCalStatus();
-
-    /* Optional: Display sensor status (debug only) */
-    //displaySensorStatus();
-
-    /* New line for the next sample */
-    Serial.println("");
-
-    /* Wait the specified delay before requesting new data */
-    delay(BNO055_SAMPLERATE_DELAY_MS);
+//    /* Get a new sensor event */
+//    sensors_event_t event;
+//    bno.getEvent(&event);
+//
+//    /* Display the floating point data */
+//    Serial.print("X: ");
+//    Serial.print(event.orientation.x, 4);
+//    Serial.print("\tY: ");
+//    Serial.print(event.orientation.y, 4);
+//    Serial.print("\tZ: ");
+//    Serial.print(event.orientation.z, 4);
+//
+//    /* Optional: Display calibration status */
+//    displayCalStatus();
+//
+//    /* Optional: Display sensor status (debug only) */
+//    //displaySensorStatus();
+//
+//    /* New line for the next sample */
+//    Serial.println("");
+//
+//    /* Wait the specified delay before requesting new data */
+//    delay(BNO055_SAMPLERATE_DELAY_MS);
 }
