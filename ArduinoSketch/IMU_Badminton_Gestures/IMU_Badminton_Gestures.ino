@@ -36,6 +36,12 @@ void loop()
   imu::Vector<3> acce = bno055_sensor.getVector(Adafruit_BNO055::VECTOR_LINEARACCEL);
   
   String temp="";
+  temp+=acce.x();
+  temp+=","; 
+  temp+=acce.y();
+  temp+=",";
+  temp+=acce.z();
+  temp+=",";
   temp+=quat.w();
   temp+=",";
   temp+=quat.x();
@@ -43,12 +49,7 @@ void loop()
   temp+=quat.y();
   temp+=",";
   temp+=quat.z();
-  temp+=",";
-  temp+=acce.x();
-  temp+=","; 
-  temp+=acce.y();
-  temp+=",";
-  temp+=acce.z();
+
 
   /*Send over serial bluetooth*/
   Serial1.println(temp);

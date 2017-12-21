@@ -27,7 +27,7 @@ public class SerialComm : IMU_Communication
                 break;
             }
             m_returnData = m_stream.ReadLine();
-            Debug.Log(m_returnData);
+            //Debug.Log(m_returnData);
             if (m_returnData != null)
             {
                 //if (m_returnData.StartsWith("{"))

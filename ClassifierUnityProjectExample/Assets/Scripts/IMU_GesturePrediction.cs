@@ -26,7 +26,7 @@ public class IMU_GesturePrediction : MonoBehaviour
         Debug.Log("Loading classification model..."+ 
             (Classifier.LoadModelFromFile(m_classifier,filePath) == 1? "Success" : "Failed!"));
 
-        StartCoroutine(PredictionRoutine());
+         StartCoroutine(PredictionRoutine());
     }
 
     void Update()
@@ -35,10 +35,10 @@ public class IMU_GesturePrediction : MonoBehaviour
         if (latestFrame != null)
         {
             string[] tokens = m_serialManager.SplittedData();
-            float x = float.Parse(tokens[1]);
-            float y = float.Parse(tokens[2]);
-            float z = float.Parse(tokens[3]);
-
+            float x = float.Parse(tokens[0]);
+            float y = float.Parse(tokens[1]);
+            float z = float.Parse(tokens[2]);
+            Debug.Log("X: "+x+ " Y: "+y+" Z: "+z);
             Classifier.AddToTimeSeriesBuffer(m_classifier, x, y, z);
         }
     }

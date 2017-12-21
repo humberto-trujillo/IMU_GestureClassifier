@@ -32,22 +32,22 @@ public class IMU_Orientation : MonoBehaviour
 		Quaternion rotation = Quaternion.identity;
 		string[] tokens = frame.Split (',');
 
-		float w = float.Parse (tokens [1]);
-		float x = float.Parse (tokens [2]);
-		float y = float.Parse (tokens [3]);
-		float z = float.Parse (tokens [4]);
+		float w = float.Parse (tokens [3]);
+		float x = float.Parse (tokens [4]);
+		float y = float.Parse (tokens [5]);
+		float z = float.Parse (tokens [6]);
 
 		rotation.Set (x, y, z, w);
 		//calibrationStatus = int.Parse(tokens[tokens.Length - 3]);
 		m_checksum = Mathf.Sqrt (w*w + x*x + y*y + z*z);
-		if(Mathf.Abs(m_checksum - float.Parse(tokens[tokens.Length-2])) < 0.1)
-		{
+		//if(Mathf.Abs(m_checksum - float.Parse(tokens[tokens.Length-2])) < 0.1)
+		//{
 			Quaternion rotationAdjust = Quaternion.identity;
 			// http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/transforms/examples/index.htm
 			// 90 degree adjustment because of the mounting orientation
 			rotationAdjust.Set(0.7071f, 0, 0, 0.7071f);
 			return rotationAdjust*rotation;
-		}
-		return transform.rotation;
+		//}
+		//return transform.rotation;
 	}
 }
