@@ -8,7 +8,7 @@ Go to computer settings and turn on bluetooth connectivity. A few seconds after 
 
 ### Creating dataset
 
-First we need to collect linear acceleration data from the IMU to create a dataset. We can do this manually with any data capturing software but here we show how ro do it with the Gesture Recognition Toolkit UI and Processing.
+First we need to collect linear acceleration data from the IMU to create a dataset. We can do this manually with any data capturing software but here we show how to do it with the Gesture Recognition Toolkit UI and Processing.
 Follow these steps to download and install the necessary tools.
 http://www.nickgillian.com/wiki/pmwiki.php/GRT/GUIProcessing.
 
@@ -23,3 +23,10 @@ Open and run the ProcessingIMUBluetooth script using Processing from the Process
 <img src="Images/ProcessingScript.png" width="450" height="350">
 
 This script listens for incoming serial data coming from the device, formats the data and send it to the GRT UI using OSC protocol to start recording samples. To record a new sample go to the data manager tab and press record, press the button again to stop recording. Once the recording session is fisnished we have to save all the samples to a file, to do it just name the dataset and press save it with a .grt extension.
+
+### Training
+One the training data file it's time to actually train a model. Download and compile the Badminton Shot Classifier c++ project and run DTWTrain.cpp source file passing the training data file as an execution argument. This will create a DTWModel file we will need later.
+
+### Use in Unity
+First we will to compile the project as a DLL in order to be used within Unity. Import the DLL file into a Unity Project.
+
