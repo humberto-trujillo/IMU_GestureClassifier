@@ -5,7 +5,7 @@
 #include <EEPROM.h>
 
 /* delay between samples */
-#define BNO055_SAMPLERATE_DELAY_MS (12)
+#define BNO055_SAMPLERATE_DELAY_MS (50)
 
 Adafruit_BNO055 bno055_sensor = Adafruit_BNO055(1,BNO055_ADDRESS_A);
 

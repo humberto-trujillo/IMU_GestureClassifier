@@ -23,10 +23,13 @@ public class IMU_GesturePrediction : MonoBehaviour
         m_serialManager = SerialComm.Instance as SerialComm;
         Debug.Log("GRT Version: " + Classifier.GrtVersion(m_classifier));
         string filePath = Application.dataPath + "/Resources/DTWModel.txt";
-        Debug.Log("Loading classification model..."+ 
-            (Classifier.LoadModelFromFile(m_classifier,filePath) == 1? "Success" : "Failed!"));
 
-         StartCoroutine(PredictionRoutine());
+        int result = Classifier.LoadModelFromFile(m_classifier, filePath);
+
+        Debug.Log("Loading classification model..."+ 
+            (result == 1? "Success" : "Failed!"));
+         if(result == 1)
+             StartCoroutine(PredictionRoutine());
     }
 
     void Update()

@@ -4,12 +4,12 @@
 ShotClassifier::ShotClassifier()
 {
 	dtw.enableNullRejection(true);
-	timeSeriesBuffer.resize(50);
+	timeSeriesBuffer.resize(75);
 }
 
 ShotClassifier::~ShotClassifier()
 {
-
+	//nothing to deallocate
 }
 
 double ShotClassifier::GrtVersion()
