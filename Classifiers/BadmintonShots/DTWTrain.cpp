@@ -15,7 +15,7 @@ This example shows you how to:
 - Manually compute the accuracy of the classifier
 */
 
-#include "GRT/GRT.h"
+#include "../GRT/GRT.h"
 using namespace GRT;
 using namespace std;
 
