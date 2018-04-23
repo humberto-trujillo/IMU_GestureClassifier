@@ -6,7 +6,6 @@ class __declspec(dllexport) TiltClassifier
 public:
 	TiltClassifier();
 	~TiltClassifier();
-	double GrtVersion();
 private:
 	
 };

@@ -10,8 +10,3 @@ TiltClassifier::~TiltClassifier()
 {
 
 }
-
-double TiltClassifier::GrtVersion()
-{
-	return atof(GRT::GRTBase::getGRTVersion().c_str());
-}

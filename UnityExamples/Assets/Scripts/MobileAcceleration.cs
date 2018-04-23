@@ -25,11 +25,23 @@ public class MobileAcceleration : MonoBehaviour
 
 	void Start () 
 	{
-		StartCoroutine(RecordSamplesCourutine());	
+		//StartCoroutine(RecordSamplesCourutine());
+		Debug.Log ("GRT Ver: "+ TiltClassifierAPI.GrtVersion());
+		StartCoroutine (PredictionCourutine());
 	}
 	void Update () 
 	{
-		
+	}
+
+	IEnumerator PredictionCourutine()
+	{
+		while (true) 
+		{
+			yield return new WaitForSeconds (3f);
+			Vector3 accel = Input.acceleration;
+			int label = TiltClassifierAPI.PredictTilt (Application.dataPath + "/SVMModel.txt", accel.x, accel.y, accel.z);
+			Debug.Log ("Predicted label: "+label);
+		}
 	}
 
 	IEnumerator RecordSamplesCourutine()
