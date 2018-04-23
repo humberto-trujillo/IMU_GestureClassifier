@@ -51,7 +51,7 @@ int main (int argc, const char * argv[])
     
     //Train the classifier with some training data
     ClassificationData trainingData;
-	string filename = "C:\\Users\\Tito\\Documents\\Repositories\\IMU_GestureClassifier\\Classifiers\\StaticBodyPostures\\data\\SVMTrainingData.txt";
+	string filename = "C:\\Users\\Tito\\Documents\\Repositories\\IMU_GestureClassifier\\Classifiers\\StaticBodyPostures\\data\\accelData.txt";
 
     if( !trainingData.loadDatasetFromFile(filename) ){
         cout << "Failed to load training data!\n";
